@@ -10,10 +10,13 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     filename: "./javascripts/main.js",
   },
+  devServer: {
+    static: path.resolve(__dirname, "src"),
+  },
   module: {
     rules: [
       {
-        test: /\.css/,
+        test: /\.(css|sass|scss)/,
         use: [
           {
             // loader: "style-loader",
@@ -21,6 +24,9 @@ module.exports = {
           },
           {
             loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
           },
         ],
       },
@@ -68,6 +74,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/templates/access.pug",
       filename: "access.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/templates/members/taro.pug",
+      filename: "members/taro.html",
     }),
     new CleanWebpackPlugin(),
   ],
